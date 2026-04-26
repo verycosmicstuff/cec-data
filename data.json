@@ -2920,44 +2920,28 @@
   ],
   "NEWS": [
     {
-      "date": "Apr 8, 2026",
-      "title": "MAJOR: CEC, FSW & FST to be Retired",
-      "body": "IRCC revealed plans to abolish the FSW, CEC and FST programs and merge them into a single Federal High-Skilled Class. New stream keeps CRS rankings but introduces simpler, occupation-based eligibility. Public consultations planned for Spring 2026.",
-      "tag": "Policy",
-      "urgent": true,
-      "link": "https://www.cicnews.com/2026/04/canada-plans-to-retire-current-express-entry-programs-launch-replacement-0473905.html"
+      "date": "Recent",
+      "tag": "IRCC NOTICE",
+      "title": "Notice \u2013 Canada testing digital visas",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/testing-digital-visas.html",
+      "urgent": false
     },
     {
-      "date": "Apr 13, 2026",
-      "title": "Proposed CRS Reform: Earnings Over Canadian Experience",
-      "body": "IRCC proposed higher points for earnings and job offers, and removing the 600-pt PNP bonus. No implementation date set \u2014 consultations ongoing.",
-      "tag": "CRS Reform",
-      "urgent": true,
-      "link": "https://www.cicnews.com/2026/04/breaking-express-entry-overhaul-eligibility-and-crs-selection-details-revealed-for-proposed-changes-0474005.html"
+      "date": "Recent",
+      "tag": "IRCC NOTICE",
+      "title": "Notice \u2013 Supplementary Information for the 2025-2027 Immigration Levels Plan",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/supplementary-immigration-levels-2025-2027.html",
+      "urgent": false
     },
     {
-      "date": "Apr 7, 2026",
-      "title": "PR Fees Increasing April 30, 2026",
-      "body": "IRCC confirmed permanent residence application fees will increase on April 30. Citizenship fees already went up March 31. File before April 30 if possible.",
-      "tag": "Fees",
-      "urgent": true,
-      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices.html"
-    },
-    {
-      "date": "Apr 7, 2026",
-      "title": "April Processing: CEC Queue Swelling +20,400",
-      "body": "CEC queue grew by 20,400+ in one month. FSWP improved to 6 months. Citizenship grants now 12 months \u2014 shrinking for first time in 2026.",
-      "tag": "Processing",
-      "urgent": false,
-      "link": "https://www.cicnews.com/2026/04/april-processing-update-express-entry-applicants-receive-mixed-bag-as-citizenship-speeds-up-0474024.html"
-    },
-    {
-      "date": "Apr 1, 2026",
-      "title": "8 Immigration Changes Effective April 1",
-      "body": "Co-op work permits no longer needed for international students. Saskatchewan raised SINP fees to $500. Rural TFW employers get more flexibility.",
-      "tag": "Policy",
-      "urgent": false,
-      "link": "https://www.cicnews.com/2026/04/eight-canadian-immigration-changes-effective-april-1-0473698.html"
+      "date": "Recent",
+      "tag": "IRCC NEWS",
+      "title": "Speaking notes for the Honourable Lena Metlege Diab, Minister of Immigration, Refugees and Citizenship: Prioritizing top talent in 2026 Express Entry Categories",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/2026/02/speaking-notes-for-the-honourable-lena-metlege-diab-minister-of-immigration-refugees-and-citizenship-prioritizing-top-talent-in-2026-express-entry.html",
+      "urgent": false
     }
   ]
 }
