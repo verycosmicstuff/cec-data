@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focusloop Labs</title>
+    <style>
+        /* CSS reset and basics */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: #030303; 
+            color: #f0f0f0; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            overflow: hidden; 
+            
+            /* Prevent text selection */
+            user-select: none;
+            -webkit-user-select: none;
+            
+            /* Custom Camera Focus Cursor */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M4 12V4h8M28 12V4h-8M4 20v8h8M28 20v8h-8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/><circle cx="16" cy="16" r="1.5" fill="white"/></svg>') 16 16, crosshair; 
+        }
+        
+        /* Scanlines & Vignette */
+        .overlay { 
+            pointer-events: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 100; 
+        }
+        .vignette { 
+            background: radial-gradient(circle at center, transparent 20%, #000 130%); 
+        }
+        .scanlines { 
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1)); 
+            background-size: 100% 4px; 
+        }
+        canvas#grain { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 99; 
+            pointer-events: none; 
+            opacity: 0.08; 
+            mix-blend-mode: screen; 
+        }
+        
+        /* Camera container */
+        .camera { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            height: 100%; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            transform-style: preserve-3d; 
+            perspective: 1000px; 
+        }
+        
+        /* Text container to handle parallax */
+        .scene { 
+            position: relative; 
+            text-align: center; 
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .text-layer { 
+            position: absolute; 
+            left: 50%; 
+            top: 50%; 
+            white-space: nowrap; 
+            will-change: transform, filter, text-shadow;
+        }
+
+        .title { 
+            font-size: 5vw; 
+            font-weight: 300; 
+            letter-spacing: 0.35em; 
+            text-transform: uppercase; 
+            z-index: 2; 
+            color: #fff;
+        }
+        
+        .email { 
+            font-size: 1.2vw; 
+            font-weight: 400; 
+            letter-spacing: 0.15em; 
+            color: #666; 
+            z-index: 1; 
+            transition: color 0.3s ease;
+        }
+
+        .email:hover {
+            color: #aaa;
+        }
+        
+        a { 
+            text-decoration: none; 
+            cursor: inherit; /* Maintain custom cursor on hover */
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .title { font-size: 8vw; letter-spacing: 0.2em; }
+            .email { font-size: 3.5vw; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="grain"></canvas>
+    <div class="overlay vignette scanlines"></div>
+    
+    <div class="camera" id="camera">
+        <div class="scene" id="scene">
+            <div class="text-layer title" id="title">FOCUSLOOP LABS</div>
+            <a href="mailto:focuslooplabs@gmail.com" class="text-layer email" id="email">focuslooplabs@gmail.com</a>
+        </div>
+    </div>
+
+    <script>
+        // Disable right click menu
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Film grain implementation
+        const canvas = document.getElementById('grain');
+        const ctx = canvas.getContext('2d', { alpha: true });
+        let w, h;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function drawGrain() {
+            const imageData = ctx.createImageData(w, h);
+            const buffer32 = new Uint32Array(imageData.data.buffer);
+            for (let i = 0; i < buffer32.length; i++) {
+                // Generate monochrome noise with high alpha
+                const noise = Math.random() * 255;
+                buffer32[i] = (255 << 24) | (noise << 16) | (noise << 8) | noise;
+            }
+            ctx.putImageData(imageData, 0, 0);
+        }
+
+        let grainLastDrawn = 0;
+
+        // Mouse tracking for parallax and dynamic chaos
+        let mouseX = 0, mouseY = 0;
+        let targetMouseX = 0, targetMouseY = 0;
+        let mouseVelocity = 0;
+        let lastMouseX = window.innerWidth / 2, lastMouseY = window.innerHeight / 2;
+        
+        function handleMove(clientX, clientY) {
+            targetMouseX = (clientX / window.innerWidth) * 2 - 1;
+            targetMouseY = (clientY / window.innerHeight) * 2 - 1;
+            
+            const dx = clientX - lastMouseX;
+            const dy = clientY - lastMouseY;
+            mouseVelocity = Math.sqrt(dx*dx + dy*dy);
+            
+            lastMouseX = clientX;
+            lastMouseY = clientY;
+        }
+
+        document.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
+        document.addEventListener('touchmove', (e) => handleMove(e.touches[0].clientX, e.touches[0].clientY));
+
+        // Animation loop
+        const camera = document.getElementById('camera');
+        const scene = document.getElementById('scene');
+        const title = document.getElementById('title');
+        const email = document.getElementById('email');
+
+        let time = 0;
+
+        function animate(timestamp) {
+            // Throttled grain (approx 24 fps)
+            if (timestamp - grainLastDrawn > 41) {
+                drawGrain();
+                grainLastDrawn = timestamp;
+            }
+
+            time += 0.012; // Base speed of time
+            
+            // Smooth mouse interpolation
+            mouseX += (targetMouseX - mouseX) * 0.05;
+            mouseY += (targetMouseY - mouseY) * 0.05;
+            mouseVelocity *= 0.92; // Velocity decay
+
+            // --- 1. Camera Shake (layered sine waves) ---
+            let shakeX = Math.sin(time * 1.1) * 1.5 + Math.sin(time * 2.3) * 1.0;
+            let shakeY = Math.cos(time * 1.3) * 1.5 + Math.sin(time * 2.7) * 1.0;
+            let shakeRot = Math.sin(time * 0.8) * 0.3 + Math.cos(time * 1.9) * 0.2;
+
+            // Add dynamic chaos based on mouse velocity
+            const chaos = Math.min(mouseVelocity * 0.05, 5);
+            shakeX += (Math.random() - 0.5) * chaos;
+            shakeY += (Math.random() - 0.5) * chaos;
+
+            camera.style.transform = `translate(${shakeX}px, ${shakeY}px) rotate(${shakeRot}deg)`;
+
+            // --- 2. Parallax (Z-axis separation) ---
+            // Rotate the whole scene slightly based on mouse
+            scene.style.transform = `rotateY(${mouseX * 3}deg) rotateX(${-mouseY * 3}deg)`;
+            
+            // Move individual layers opposite to mouse to simulate depth
+            title.style.transform = `translate(-50%, -50%) translateZ(40px) translate(${mouseX * -15}px, ${mouseY * -15}px)`;
+            email.style.transform = `translate(-50%, 60px) translateZ(-30px) translate(${mouseX * 5}px, ${mouseY * 5}px)`;
+
+            // --- 3. Focus Breathing ---
+            // Oscillator ranges from -1 to 1. 
+            // We use sin(time * speed) to slowly rack focus back and forth.
+            const focus = Math.sin(time * 0.35); 
+            
+            // Title is sharp when focus is > 0, blurry when < 0
+            const titleBlur = Math.max(0, -focus * 5);
+            // Email is sharp when focus is < -0.5, blurry when > 0
+            const emailBlur = Math.max(0, (focus + 0.3) * 4);
+
+            title.style.filter = `blur(${titleBlur}px)`;
+            email.style.filter = `blur(${emailBlur}px)`;
+
+            // --- 4. Chromatic Aberration ---
+            // Base split + spike when mouse moves fast
+            const splitAmount = 1 + chaos * 0.8;
+            
+            // Red splits right, Cyan splits left
+            const caTitle = `${splitAmount}px 0px 0px rgba(255,0,0,0.6), -${splitAmount}px 0px 0px rgba(0,255,255,0.6)`;
+            const caEmail = `${splitAmount * 0.5}px 0px 0px rgba(255,0,0,0.4), -${splitAmount * 0.5}px 0px 0px rgba(0,255,255,0.4)`;
+            
+            title.style.textShadow = caTitle;
+            email.style.textShadow = caEmail;
+
+            requestAnimationFrame(animate);
+        }
+
+        requestAnimationFrame(animate);
+    </script>
+</body>
+</html>
