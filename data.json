@@ -2920,7 +2920,23 @@
   ],
   "NEWS": [
     {
-      "date": "Recent",
+      "date": "March 27, 2026",
+      "tag": "IRCC NOTICE",
+      "title": "Notice \u2013 Permanent residence fees increasing on April 30, 2026",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/permanent-residence-fees-increasing.html",
+      "urgent": false
+    },
+    {
+      "date": "March 10, 2026",
+      "tag": "IRCC NOTICE",
+      "title": "Notice \u2013 Changes to settlement service eligibility for economic immigrants",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/changes-settlement-service-eligibility-economic-immigrants.html",
+      "urgent": false
+    },
+    {
+      "date": "November 27, 2025",
       "tag": "IRCC NOTICE",
       "title": "Notice \u2013 Canada testing digital visas",
       "body": "Tap \"Read Source\" for full details from IRCC.",
@@ -2928,11 +2944,27 @@
       "urgent": false
     },
     {
-      "date": "Recent",
+      "date": "October 24, 2024",
       "tag": "IRCC NOTICE",
       "title": "Notice \u2013 Supplementary Information for the 2025-2027 Immigration Levels Plan",
       "body": "Tap \"Read Source\" for full details from IRCC.",
       "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/supplementary-immigration-levels-2025-2027.html",
+      "urgent": false
+    },
+    {
+      "date": "April 11, 2024",
+      "tag": "IRCC NOTICE",
+      "title": "Notice - Permanent residence fees increasing on April 30, 2024",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/increase-permanent-residence-fees-april-2024.html",
+      "urgent": false
+    },
+    {
+      "date": "March 18, 2024",
+      "tag": "IRCC NOTICE",
+      "title": "Notice - New temporary public policy to facilitate processing of some H-1B open work permit applications",
+      "body": "Tap \"Read Source\" for full details from IRCC.",
+      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/new-temporary-public-policy-facilitate-h1b-application-processing.html",
       "urgent": false
     }
   ]
