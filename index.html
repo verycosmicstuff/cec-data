@@ -112,49 +112,10 @@
             cursor: inherit; /* Maintain custom cursor on hover */
         }
 
-        /* Footer */
-        .site-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 101;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            letter-spacing: 0.05em;
-        }
-        .footer-content {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .footer-content a {
-            color: rgba(255, 255, 255, 0.6);
-            transition: color 0.3s ease;
-        }
-        .footer-content a:hover {
-            color: rgba(255, 255, 255, 1);
-        }
-        .divider {
-            color: rgba(255, 255, 255, 0.2);
-        }
-
         /* Media queries */
         @media (max-width: 768px) {
             .title { font-size: 8vw; letter-spacing: 0.2em; }
             .email { font-size: 3.5vw; }
-            .footer-content {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .divider {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -168,15 +129,6 @@
             <a href="mailto:focuslooplabs@gmail.com" class="text-layer email" id="email">focuslooplabs@gmail.com</a>
         </div>
     </div>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <span class="copyright">© 2026 Focusloop Labs</span>
-            <span class="divider">|</span>
-            <span class="projects-label">Projects:</span>
-            <a href="https://cec-tracker.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-link">CEC Tracker</a>
-        </div>
-    </footer>
 
     <script>
         // Disable right click menu
@@ -278,7 +230,7 @@
             // Title is sharp when focus is > 0, blurry when < 0
             const titleBlur = Math.max(0, -focus * 5);
             // Email is sharp when focus is < -0.5, blurry when > 0
-            const emailBlur = Math.max(0, (focus + 0.3) * 1.5);
+            const emailBlur = Math.max(0, (focus + 0.3) * 4);
 
             title.style.filter = `blur(${titleBlur}px)`;
             email.style.filter = `blur(${emailBlur}px)`;
