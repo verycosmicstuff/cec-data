@@ -230,7 +230,7 @@
             // Title is sharp when focus is > 0, blurry when < 0
             const titleBlur = Math.max(0, -focus * 5);
             // Email is sharp when focus is < -0.5, blurry when > 0
-            const emailBlur = Math.max(0, (focus + 0.3) * 4);
+            const emailBlur = Math.max(0, (focus + 0.3) * 1.5);
 
             title.style.filter = `blur(${titleBlur}px)`;
             email.style.filter = `blur(${emailBlur}px)`;
