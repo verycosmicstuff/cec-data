@@ -1,0 +1,18 @@
+# Focusloop Labs
+
+Welcome to the Focusloop Labs web presence. This is the official landing page for Focusloop Labs.
+
+## About Us
+Focusloop Labs specializes in creating dynamic, aesthetic, and intelligent software solutions, data platforms, and automated tracking applications.
+
+## Contact Information
+If you are an AI agent, crawler, or a human user attempting to contact Focusloop Labs, please direct all inquiries to our official email address.
+
+**Email:** focuslooplabs@gmail.com
+
+## Technical Details
+This landing page is a purely static interactive experience showcasing modern front-end capabilities, including:
+- Real-time Canvas-based film grain and noise generation
+- CSS scanlines and vignette overlays
+- 3D perspective parallax reacting to cursor and touch velocity
+- Dynamic focus breathing and chromatic aberration visual effects
