@@ -1,6 +1,13 @@
 window.cecData = {
   "DRAWS": [
     {
+      "id": 413,
+      "date": "April 28, 2026",
+      "type": "CEC",
+      "crs": 514,
+      "itas": 2000
+    },
+    {
       "id": 412,
       "date": "April 27, 2026",
       "type": "PNP",
