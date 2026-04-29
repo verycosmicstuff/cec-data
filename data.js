@@ -1,6 +1,13 @@
 window.cecData = {
   "DRAWS": [
     {
+      "id": 414,
+      "date": "April 29, 2026",
+      "type": "French-Language proficiency 2026-Version 2",
+      "crs": 400,
+      "itas": 4000
+    },
+    {
       "id": 413,
       "date": "April 28, 2026",
       "type": "CEC",
@@ -2979,14 +2986,6 @@ window.cecData = {
       "title": "Notice - New temporary public policy to facilitate processing of some H-1B open work permit applications",
       "body": "Tap \"Read Source\" for full details from IRCC.",
       "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/new-temporary-public-policy-facilitate-h1b-application-processing.html",
-      "urgent": false
-    },
-    {
-      "date": "2026-02-18 20:00",
-      "tag": "IRCC NEWS",
-      "title": "Speaking notes for the Honourable Lena Metlege Diab, Minister of Immigration, Refugees and Citizenship: Prioritizing top talent in 2026 Express Entry Categories",
-      "body": "Tap \"Read Source\" for full details from IRCC.",
-      "link": "https://www.canada.ca/en/immigration-refugees-citizenship/news/2026/02/speaking-notes-for-the-honourable-lena-metlege-diab-minister-of-immigration-refugees-and-citizenship-prioritizing-top-talent-in-2026-express-entry.html",
       "urgent": false
     }
   ]
